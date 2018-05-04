@@ -30,3 +30,27 @@ function init_header()
 }
 
 add_action('wp_head', 'init_header', 1);
+
+add_filter('show_admin_bar', '__return_false');
+
+
+function set_post_arguments($query){
+	if(!is_admin() && is_post_type_archive('template')){
+		$query->set('posts_per_page', 9999);
+	}
+	if ( !is_front_page() && is_home() ) {
+		$query->set( 'cat', '-18' );
+	}
+}
+add_action('pre_get_posts', 'set_post_arguments');
+
+
+// ajax
+add_action('wp_ajax_case_study', 'case_study');
+add_action('wp_ajax_nopriv_case_study', 'case_study');
+
+function case_study(){
+	$post_id = $_POST['post_id'];
+
+	exit();
+}
