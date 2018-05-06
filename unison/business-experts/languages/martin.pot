@@ -1,0 +1,19 @@
+# Copyright (C) 2016 ThemeWar
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: Martin 1.0\n"
+"Report-Msgid-Bugs-To: https://themewar.com/wp/martin/\n"
+"POT-Creation-Date: 2016-5-22 12:58:54+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2015-MO-DA HO:MI+ZONE\n"
+"Last-Translator: ThemeWar <expjoomworker@gmail.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+
+#: comments.php:25
+msgid "Comments"
+msgstr ""
+
+

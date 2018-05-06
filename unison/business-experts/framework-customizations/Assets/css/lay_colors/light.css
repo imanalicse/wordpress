@@ -1,0 +1,161 @@
+.featureArea,
+.recentWorkArea,
+.blogArea,
+.FeatureTwoarea,
+.aboutTwoSection,
+.ourServicesThree,
+.dropLineArea,
+.ourTeamSection.TeamBgblack,
+.TeamBgblack .SingleTeamDec,
+header.headerTopmenu.fixedHeader,
+.blogSidebar,
+.blogGridSection,
+.eventsList,
+.memberPageSection,
+.errorPage,
+.errorPage h2::before,
+.contactInfo
+{
+    background: #fff;
+}
+.mainMenu,
+.searchField input,
+.searchField button,
+.menus ul li a,
+header.fixedHeader,
+.blgoAuthor .pull-right:hover span,
+.gellaryTwoArea{
+    background: #323232;
+}
+.menus ul li a,
+.mainMenu.fixedHeader .logo a,
+.mainMenu.fixedHeader .logo a:hover b,
+.ourServicesArea .sectionTitle,
+.blgoAuthor .pull-right span,
+.blgoAuthor .pull-right:hover span,
+.gellaryTwoArea .sectionTitle,
+.gellaryTwofillter .filterMenu li,
+.singleGaDec p a,
+.galleryLeftSide .sectionTitle.white{
+    color: #fff;
+}
+.mainMenu.fixedHeader .logo a:hover{
+    color: #EB5055;
+}
+ul.subMenu > li{
+    border-color: #3d3d3d;
+}
+.titleTwo a,
+.titleTwo a:hover b,
+.white,
+.teamDetails .titleTwo,
+.blogContent h3 a, .blgoAuthor a,
+.blogSlideButton.pull-right a,
+.blogContent a:hover,
+.aboutTwoleft ul li,
+.footerBottomTwo h6,
+.footerBottomTwo h1,
+.singleHoriservicess h3 a,
+.chart p, .charttwo p,
+.singleSkill h4,
+.TeamBgblack h4 a, 
+.TeamBgblack h4 span, 
+.TeamBgblack .deg,
+.blogRightSide .widget h1,
+.blogDec h1 a,
+.blogMetas span,
+.calender table caption,
+.calender tr:first-child td,
+.blogPost.blogPostDecip p.lead,
+.blogPost.blogPostDecip blockquote p,
+.eventDec h2 a,
+.teamCarowselMember2 p.deg,
+.singleMemDec h3 a,
+.singleMemDeg ul li p span
+{
+    color: #323232
+}
+.deg.ab ,
+.TeamBgblack .SingleTeamDec p.deg{
+    color: #323232 !important;
+}
+.featureArea,
+.AboutAcc.panel,
+.aboutTwoleft ul li,
+.searchBox,
+.widget ul li,
+.singlePo,
+.admin,
+.blogGridSection .singleBlogGride,
+.calender,
+.comment-list li,
+.comment-list li:last-child,
+.blogPostAuthor,
+.singleEvent,
+.eventmeta,
+.eventListRight .singleBlog,
+.singleMem,
+.singleMemDeg ul li,
+.errorPage h2::before,
+.errorPage h2
+
+{
+    border-color: #f2f2f2;
+}
+.singleCarowsel {
+    border: 1px solid #f2f2f2;
+}
+.testimonialArea .overlay,
+.ourServicessHori .overlay,
+.OurSkillArea .overlay{
+    background: rgba(255, 255, 255,.9);
+}
+.testiQoute,
+.teamAreaWrap .owl-theme .owl-controls .owl-buttons .owl-next::before,
+.teamAreaWrap .owl-theme .owl-controls .owl-buttons .owl-prev::after{
+    border-color: #cbcbcb;
+}.testiQoute::before {
+    background: #e2e2e2;
+    border-right: 1px solid #cbcbcb;
+    border-top: 1px solid #cbcbcb;
+}
+.teamAreaWrap{
+    background: url(../../images/home1/pattern2.png);
+}
+.servicRight{
+    background: url(../../images/home1/teamBg.jpg);
+}
+.servicRight p.sectionSubtitle {
+    border-bottom: 1px solid #4c4c4c;
+}
+.singleCarowsel,
+.blgoAuthor,
+.blogSlideButton.pull-right a{
+    border-color:#e5e5e5
+}
+.aboutThree,
+.ourServicesThree,
+.blogSidebar,
+.eventsList,
+.contactInfo{
+    border-bottom: 1px solid #f2f2f2;
+}
+.dropLineForm input[type="text"], 
+.dropLineForm input[type="email"],
+.dropLineForm textarea{
+    border-color: #f2f2f2;
+}
+.footerBottomTwo h1,
+.footerBottomTwo h6{
+    color: #fff;
+}
+.TeamBgblack .SingleTeam{
+    border: none;
+}
+.HeadeWrap.headerTopmenu .menus ul li a{
+    background: #fff;
+    color: #323232;
+}
+.HeadeWrap.headerTopmenu ul.subMenu > li{
+    border-color: #f2f2f2
+}

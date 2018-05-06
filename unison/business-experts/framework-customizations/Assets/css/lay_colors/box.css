@@ -1,0 +1,112 @@
+body {
+    background: #fff url("../../images/pattern/p1.png") repeat fixed center center;
+    box-shadow: 0 0 15px rgba(0, 0, 0, .10);
+    margin: auto;
+    width: 1585px;
+}
+body.pat1{
+    background: url(../../images/pattern/p1.png) repeat fixed center center #fff;
+}
+body.pat2{
+    background: url(../../images/pattern/p2.png) repeat fixed center center #4c4c4c;
+}
+body.pat3{
+    background: url(../../images/pattern/p3.png) repeat fixed center center #fff;
+}
+body.pat4{
+    background: url(../../images/pattern/p4.png) repeat fixed center center #4c4c4c;
+}
+body.pat5{
+    background: url(../../images/pattern/p5.png) repeat fixed center center #fff;
+}
+body.pat6{
+    background: url(../../images/pattern/p6.png) repeat fixed center center #4c4c4c;
+}
+body.pat7{
+    background: url(../../images/pattern/p7.png) repeat fixed center center #fff;
+}
+body.pat8{
+    background: url(../../images/pattern/p8.png) repeat fixed center center #4c4c4c;
+}
+body.pat9{
+    background: url(../../images/pattern/p9.png) repeat fixed center center #fff;
+}
+body.pat10{
+    background: url(../../images/pattern/p10.png) repeat fixed center center #4c4c4c;
+}
+
+.headerArea .logo {
+    padding-left: 206px;
+    padding-top: 47px;
+}
+.mainMenu,
+.aboutusArea,
+.subscribeArea,
+.gellaryTwoArea,
+.aboutThree,
+.HeadeWrap,
+.googlemap{
+    background: #fff;
+}
+.galleryCont > p {
+    margin-bottom: 58px;
+}
+.galleryCont{
+    padding-bottom: 0;
+}
+.teamAreaWrap {
+    background: #fff url("../../images/home1/teamBg.jpg") no-repeat scroll left bottom;
+}
+header.fixedHeader {
+    left: auto;
+    right: auto;
+    width: 83.3%;
+}
+.servicRight{
+    height: 674px;
+}
+.homeThree .galleryCont > p {
+    margin-bottom: 58px;
+}
+.teamDetails {
+    float: right;
+    left: 60px;
+    padding-right: 400px;
+    position: relative;
+    top: 325px;
+    width: 50%;
+}
+
+@media(min-width:1200px) and (max-width:1400px){
+    body{
+        width: 1200px;
+    }
+    header.fixedHeader {
+        width: 89%;
+    }
+    .menus ul li a {
+        padding: 24px 25px;
+    }
+    .slideContent {
+        margin-left: 100px;
+    }
+    .galleryLeftSide {
+        padding: 91px 51px 63px;
+    }
+    .homeThree .galleryLeftSide{
+        padding-bottom: 40px;
+    }
+    .homeThree.galleryArea .defaultButton{
+        bottom: -41px;
+        position: relative;
+    }
+    .homeThree .galleryCont > p {
+        margin-bottom: 81px;
+    }
+}
+
+@media(min-width:980px) and (max-width:1280px){
+    body{
+        width: 900px;
+    }
+}

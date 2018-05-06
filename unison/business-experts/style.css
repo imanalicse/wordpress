@@ -1,0 +1,17 @@
+/*
+Theme Name: Business Experts - Responsive Corporate WordPress Theme
+Theme URI: http://themewar.com/wp/business-expert/
+Author: ThemeWar
+Author URI: http://themewar.com
+Description: Multipurpose Responsive Wordpress Theme.
+Version: 1.0
+License: 
+License URI: 
+Tags: 
+Text Domain: be
+
+*/
+.sticky .posted-on,
+.byline {
+	display: none;
+}

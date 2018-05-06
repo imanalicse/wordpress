@@ -1,0 +1,111 @@
+.switchTittle,
+.line,
+.defaultButton,
+.menus ul li.active a, 
+.menus ul li a:hover, 
+.menus ul li a:focus,
+.sliderArea .tp-bullets.simplebullets .bullet:hover, 
+.sliderArea .tp-bullets.simplebullets .bullet.selected,
+.menus li:hover > a,
+.featureIcon,
+.popup,
+ul.slick-dots,
+.bx-wrapper .bx-pager.bx-default-pager a.active,
+.bx-wrapper .bx-pager.bx-default-pager a:hover,
+.skill,
+.services_single .services_front,
+.subscribeForm > button[type="submit"],
+.blgoAuthor .pull-right span,
+.defaultButton::after,
+.TeamSocial,
+.owl-theme .owl-controls .owl-page.active span, 
+.owl-theme .owl-controls.clickable .owl-page:hover span,
+.abouttwoContent .active,
+.aboutTwoleft ul li::after,
+.filterMenu li.active,
+.filterMenu li:hover,
+.paginationIner li.active a,
+.paginationIner li a:hover,
+.filterMmenu li.active, .filterMmenu li:hover,
+.widget .tag .active, 
+.widget .tag a:hover,
+.bpaSocial,
+.singleMemSocial
+
+{
+    background: #89b927 !important; 
+}
+
+b,
+.searchField button i,
+.socialIcon a:hover,
+.detailsLink:hover,
+.testimonialArea .bx-wrapper .bx-controls-direction a.bx-next,
+.testimonialArea .bx-wrapper .bx-controls-direction a.bx-prev,
+.services_back i,
+.blogSlideButton.pull-right a:hover, 
+.blogSlideButton.pull-right .slideAll,
+.blogContent a,
+.singleWidget i,
+.blogContent h3 a:hover, 
+.blgoAuthor a:hover,
+.blogMeta a:hover,
+.logo a:hover,
+.accoHead i,
+.singleGaDec p a:hover,
+.chart p span, 
+.charttwo p span,
+.testdec::before,
+.singleServicessThree i,
+.SingleTeamDec h4 a:hover,
+.funhomeThree .funfactsContent i,
+.titleTwo a:hover,
+.SingleTeamDec h4 a:hover span,
+.singleHoriservicess h3 a:hover,
+.breadcrumb li a,
+.blogPostsection .blogTag li a,
+.searchBox button i,
+.widget ul li a i,
+.widget ul li a:hover,
+.admin p a,
+.blogMetas i,
+.spDec a,
+.calender .selected,
+.comHead a,
+.comHead a.pull-right:hover,
+.calenderfooterLink a:hover i,
+.blogDec h1 a:hover,
+.singleMemDeg ul li i,
+.errorPage h1,
+.sliderArea .tparrows.default.round:hover::before,
+.singleWidget p a:hover, 
+.footerArea p a:hover
+
+{
+    color: #89b927;
+}
+.galleryArea,
+.teamAreaWrap .owl-theme .owl-controls .owl-buttons .owl-prev:hover::after, 
+.teamAreaWrap .owl-theme .owl-controls .owl-buttons .owl-next:hover::before,
+.filterMenu li.active, 
+.filterMenu li:hover,
+.pageHeadSection,
+.blogPost.blogPostDecip blockquote,
+.ourTeamSection .owl-theme .owl-controls .owl-buttons .owl-prev:hover::after, 
+.ourTeamSection .owl-theme .owl-controls .owl-buttons .owl-next:hover::before
+{
+    border-color: #89b927;
+}
+
+ul.slick-dots li button{
+    background: #709820;
+}
+.services_single .services_front, 
+.services_single .services_back
+{
+    border-color: #709820;
+}
+
+.blgoAuthor .pull-right:hover span{
+    color: #fff;
+}
