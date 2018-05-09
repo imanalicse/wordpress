@@ -1,0 +1,48 @@
+Sample Categories
+Banner Categories
+
+===========================================
+
+Sample Category
+Banner Category
+
+===========================================
+
+SampleCategories
+BannerCategories
+
+===========================================
+
+sample_categories
+banner_categories
+
+===========================================
+
+Sample_Categories
+Banner_Categories
+===========================================
+
+sample_category
+banner_category
+
+===========================================
+===========================================
+
+Samples
+Banners
+===========================================
+
+Sample
+Banner
+
+===========================================
+
+samples
+banners
+===========================================
+
+sample
+banner
+
+
+
