@@ -1,4 +1,4 @@
-<div class="mrks-share-buttons" style="display: none">
+<div class="mrks-share-buttons">
     <!-- Facebook -->
     <a href="http://www.facebook.com/sharer.php?u=<?php echo urlencode(get_the_permalink()); ?>" target="_blank">
         <i class="fa fa-facebook"></i>
