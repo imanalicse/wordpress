@@ -17,3 +17,22 @@
 	wp_list_categories($arg);
 	echo '</ul>';
 
+//
+function getTemplateCategories() {
+	$args = array(
+		'hide_empty'=> false,
+		'taxonomy'  => 'template_category',
+		'slug' => 'online-stores'
+	);
+	$parent = get_categories($args);
+	$parent_cat_id = $parent[0]->cat_ID;
+
+	$categories = get_categories( array(
+		'orderby'   => 'name',
+		'hide_empty'=> false,
+		'taxonomy'  => 'template_category',
+		'parent'  => $parent_cat_id
+	) );
+	return $categories;
+}
+
