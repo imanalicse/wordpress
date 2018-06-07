@@ -27,6 +27,11 @@ function get_items(){
 		action:'get_items',
 		cat_id:cat_id
 	}
+
+	/*
+		var formData = $("#request_quote_form").serialize();
+		var data="action=request_quote_process&"+formData
+	*/
 	$.ajax({
 		type:"POST",
 		url: ajax_url,
