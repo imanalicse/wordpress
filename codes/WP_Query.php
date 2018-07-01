@@ -59,3 +59,26 @@ if($query->have_posts())
     ));
     ?>
 </div>
+
+
+<?php
+
+// With Excluded category
+$args = array(
+    'posts_per_page' => -1,
+    'post_type' => 'templates',
+    'tax_query' => array(
+        'relation' => 'AND',
+        array(
+            'taxonomy'  => 'template_category',
+            'field'     => 'slug',
+            'terms'     => 'online-stores',
+        ),
+        array(
+            'taxonomy'  => 'template_category',
+            'field'     => 'term_id',
+            'terms'     => $results['category_id'],
+            'operator'  => 'NOT IN'
+        ),
+    )
+);      
