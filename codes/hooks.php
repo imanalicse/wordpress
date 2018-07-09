@@ -19,3 +19,18 @@ add_filter('plugin_title', 'change_plugin_title');
 function change_plugin_title($value) {
     return 'New '. $value;
 }
+
+// another example of filter
+
+echo do_shortcode('[show_title]');
+function show_title() {
+    $title = "Tittle";
+    echo apply_filters('plugin_title', $title);
+}
+add_shortcode('show_title', 'show_title');
+
+add_filter('plugin_title', 'change_plugin_title');
+
+function change_plugin_title($value) {
+    return 'New '. $value;
+}
