@@ -58,3 +58,5 @@ register_activation_hook(__FILE__, array($imnPlugin, 'activate'));
 
 //Deactivation
 register_activation_hook(__FILE__, array($imnPlugin, 'deactivate'));
+
+//register_uninstall_hook(__FILE__, array($imnPlugin, 'uninstall'));
