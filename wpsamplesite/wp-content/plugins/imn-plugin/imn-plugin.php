@@ -23,6 +23,9 @@ class ImnPlugin
     function init_hooks()
     {
         add_action('init', array($this, 'custom_post_type'));
+
+        add_action('admin_enqueue_scripts', array($this, 'admin_scripts'));
+        add_action('wp_enqueue_scripts', array($this, 'frontend_scripts'));
     }
 
     function activate()
@@ -46,6 +49,15 @@ class ImnPlugin
     function custom_post_type()
     {
         register_post_type('book', ['public' => true, 'label' => 'Books']);
+    }
+
+    function admin_scripts(){
+        wp_enqueue_style('imn-style', plugins_url('/assets/imn-style.css', __FILE__));
+        wp_enqueue_style('inm-script', plugins_url('/assets/inm-script.js', __FILE__));
+    }
+
+    function frontend_scripts() {
+        wp_enqueue_style('frontend-imn-style', plugins_url('/assets/frontend-imn-style.css', __FILE__));
     }
 }
 
