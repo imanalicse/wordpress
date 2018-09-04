@@ -20,10 +20,13 @@ function webalive_custom_dir( $dir ) {
 		'subdir' => '/brief-form',
 	) + $dir;
 }
-add_filter( 'upload_dir', 'webalive_custom_dir' );
+
 
 // Webalive brief form file upload
 function webalive_brief_form_file_uploader() {
+
+	add_filter( 'upload_dir', 'webalive_custom_dir' );
+
 	$fileErrors = array(
 		0 => "There is no error, the file uploaded with success",
 		1 => "The uploaded file exceeds the upload_max_files in server settings",
