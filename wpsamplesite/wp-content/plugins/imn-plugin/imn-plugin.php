@@ -30,6 +30,18 @@ if (!class_exists('ImnPlugin')) {
             add_action('wp_enqueue_scripts', array($this, 'frontend_scripts'));
         }
 
+        function register() {
+            add_action('admin_menu', array($this, 'add_admin_pages'));
+        }
+
+        public function add_admin_pages() {
+            add_menu_page('Imn Plugin', 'Imn', 'manage_options', 'imn_plugin', array($this, 'admin_index'), 'dashicons-store', 110);
+        }
+
+        public function admin_index() {
+
+        }
+
         function activate()
         {
             // generated a CTP
@@ -69,6 +81,7 @@ if (!class_exists('ImnPlugin')) {
 
     if (class_exists("ImnPlugin")) {
         $imnPlugin = new ImnPlugin();
+        $imnPlugin->register();
     }
 
     // Activation
