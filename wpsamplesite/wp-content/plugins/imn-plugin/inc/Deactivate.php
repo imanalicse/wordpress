@@ -1,6 +1,8 @@
 <?php
 
-class ImnPluginDeactivate
+namespace Inc;
+
+class Deactivate
 {
 
     public static function deactivate()

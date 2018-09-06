@@ -1,6 +1,8 @@
 <?php
 
-class ImnPluginActivate
+namespace Inc;
+
+class Activate
 {
     public static function activate()
     {
