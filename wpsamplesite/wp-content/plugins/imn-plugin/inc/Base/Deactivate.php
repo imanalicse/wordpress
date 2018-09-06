@@ -1,6 +1,10 @@
 <?php
 
-namespace Inc;
+/*
+* @package ImnPlugin
+*/
+
+namespace Inc\Base;
 
 class Deactivate
 {
