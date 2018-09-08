@@ -1,1 +1,1 @@
-<h1>Imn Plugin</h1>
+<h1>Imn Plugin required</h1>
