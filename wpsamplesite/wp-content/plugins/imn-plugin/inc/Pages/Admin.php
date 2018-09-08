@@ -12,7 +12,8 @@ class Admin extends BaseController
 {
     public $settings;
 
-    public $pages;
+    public $pages = array();
+    public $subpages = array();
 
     public function __construct()
     {
@@ -25,21 +26,43 @@ class Admin extends BaseController
                 'capability' => 'manage_options',
                 'menu_slug' => 'imn_plugin',
                 'callback' => function () {
-                    echo "<h1>Plugin</h1>";
+                    echo "<h1>Imn Plugin</h1>";
                 },
+                'icon_url' => 'dashicons-store',
+                'position' => 110
+            )
+        );
+
+        $this->subpages = array(
+            array(
+                'parent_slug' => 'imn_plugin',
+                'page_title' => 'Custom post type',
+                'menu_title' => 'CPT',
+                'capability' => 'manage_options',
+                'menu_slug' => 'imn_cpt',
+                'callback' =>  function() { echo "CPT manager"; },
                 'icon_url' => 'dashicons-store',
                 'position' => 110
             ),
             array(
-                'page_title' => 'Test Plugin',
-                'menu_title' => 'Test',
+                'parent_slug' => 'imn_plugin',
+                'page_title' => 'Custom taxonomy',
+                'menu_title' => 'Taxonomies',
                 'capability' => 'manage_options',
-                'menu_slug' => 'test_plugin',
-                'callback' => function () {
-                    echo "<h1>External</h1>";
-                },
-                'icon_url' => 'dashicons-external',
-                'position' => 9
+                'menu_slug' => 'imn_taxonomies',
+                'callback' =>  function() { echo "Taxonomy manager"; },
+                'icon_url' => 'dashicons-store',
+                'position' => 110
+            ),
+            array(
+                'parent_slug' => 'imn_plugin',
+                'page_title' => 'Custom widgets',
+                'menu_title' => 'Widgets',
+                'capability' => 'manage_options',
+                'menu_slug' => 'imn_widgets',
+                'callback' =>  function() { echo "Widget manager"; },
+                'icon_url' => 'dashicons-store',
+                'position' => 110
             )
         );
     }
@@ -47,6 +70,6 @@ class Admin extends BaseController
     public function register()
     {
 
-        $this->settings->addPages($this->pages)->register();
+        $this->settings->addPages($this->pages)->withSubPage('Dashboard')->addSubPages($this->subpages)->register();
     }
 }
