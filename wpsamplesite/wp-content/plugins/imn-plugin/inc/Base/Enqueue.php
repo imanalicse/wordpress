@@ -17,6 +17,6 @@ class Enqueue extends BaseController
     function enqueue()
     {
         wp_enqueue_style('imn-style', $this->plugin_url . 'assets/imn-style.css');
-        wp_enqueue_style('inm-script', $this->plugin_url . 'assets/inm-script.js');
+        wp_enqueue_script('inm-script', $this->plugin_url . 'assets/inm-script.js');
     }
 }
