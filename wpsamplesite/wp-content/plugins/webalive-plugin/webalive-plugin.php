@@ -17,3 +17,20 @@ if (!defined('ABSPATH')) {
 
 require_once "setting-api/settings.php";
 
+add_action('init', 'custom_post_type');
+
+function custom_post_type()
+{
+    register_post_type('testimonial', array(
+        'labels' => array(
+            'name' => __('Testimonials'),
+            'singular_name' => __('Testimonial'),
+            'add_new_item' => __('Add New', 'textdomain'),
+            'edit_item' => __('Edit', 'textdomain'),
+        ),
+        'public' => true,
+        'capability_type' => 'post',
+        'supports' => array('title', 'editor', 'thumbnail', 'page-attributes'),
+        'has_archive' => true
+    ));
+}
