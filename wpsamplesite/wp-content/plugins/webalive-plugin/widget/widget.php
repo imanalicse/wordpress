@@ -1,7 +1,7 @@
 <?php
 
 
-class MediaWidget extends WP_Widget
+class ProfileWidget extends WP_Widget
 {
 
 //    public function __construct($id_base, $name, array $widget_options, array $control_options)
@@ -30,11 +30,11 @@ class MediaWidget extends WP_Widget
     public function widget($args, $instance)
     {
         echo $args['before_widget'];
-        echo "aaaaaaaa";
+        echo "Webalive profile";
         echo $args['after_widget'];
     }
 }
 
 add_action('widgets_init', function () {
-    register_widget("MediaWidget");
+    register_widget("ProfileWidget");
 });

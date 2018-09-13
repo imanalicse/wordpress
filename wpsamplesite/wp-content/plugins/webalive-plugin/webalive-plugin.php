@@ -20,3 +20,5 @@ require_once "setting-api/settings.php";
 require_once "post-type.php";
 
 require_once "widget/widget.php";
+
+require_once "widget/MediaWidget.php";
