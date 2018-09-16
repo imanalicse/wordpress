@@ -30,6 +30,13 @@ add_action('manage_testimonial_posts_custom_column', 'set_custom_columns_data', 
 
 add_filter('manage_edit-testimonial_sortable_columns', 'set_custom_columns_sortable');
 
+add_action('admin_menu', 'create_shortcode_page');
+
+function create_shortcode_page()
+{
+    add_submenu_page('edit.php?post_type=testimonial', 'Shortcodes', 'Shortcodes', 'manage_options', 'webalive_testimonial_shortcode', 'shortCodePage');
+}
+
 function add_meta_boxes()
 {
 
@@ -164,11 +171,17 @@ function set_custom_columns_data($column, $post_id)
     }
 }
 
-function set_custom_columns_sortable($columns) {
+function set_custom_columns_sortable($columns)
+{
 
     $columns['name'] = 'name';
     $columns['approved'] = 'approved';
     $columns['featured'] = 'featured';
-    
+
     return $columns;
+}
+
+function shortCodePage()
+{
+    require_once "testimonial/testimonial-shortcode.php";
 }
