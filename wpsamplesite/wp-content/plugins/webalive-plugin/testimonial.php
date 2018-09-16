@@ -25,6 +25,8 @@ function testimonial_cpt()
 
 add_action('add_meta_boxes', 'add_meta_boxes');
 add_action('save_post', 'save_meta_box');
+add_action('manage_testimonial_posts_columns', 'set_custom_columns');
+add_action('manage_testimonial_posts_custom_column', 'set_custom_columns_data', 10, 2);
 
 function add_meta_boxes()
 {
@@ -116,5 +118,46 @@ function save_meta_box($post_id)
     );
 
     update_post_meta($post_id, '_webalive_testimonial_key', $data);
+}
 
+function set_custom_columns($columns)
+{
+
+    $title = $columns['title'];
+    $date = $columns['date'];
+
+    unset($columns['title']);
+    unset($columns['date']);
+
+    $columns['name'] = 'Author';
+    $columns['title'] = $title;
+    $columns['approved'] = 'Approved';
+    $columns['featured'] = 'Featured';
+    $columns['date'] = $date;
+
+    return $columns;
+}
+
+function set_custom_columns_data($column, $post_id)
+{
+
+    $data = get_post_meta($post_id, '_webalive_testimonial_key', true);
+    $name = isset($data['name']) ? $data['name'] : '';
+    $email = isset($data['email']) ? $data['email'] : '';
+    $approved = isset($data['approved']) && $data['approved'] === 1 ? '<strong>YES</strong>' : 'NO';
+    $featured = isset($data['featured']) && $data['featured'] === 1 ? '<strong>YES</strong>' : 'NO';
+
+    switch ($column) {
+        case 'name':
+            echo '<strong>' . $name . '</strong><br/><a href="mailto:' . $email . '">' . $email . '</a>';
+            break;
+
+        case 'approved':
+            echo $approved;
+            break;
+
+        case 'featured':
+            echo $featured;
+            break;
+    }
 }
