@@ -28,6 +28,8 @@ add_action('save_post', 'save_meta_box');
 add_action('manage_testimonial_posts_columns', 'set_custom_columns');
 add_action('manage_testimonial_posts_custom_column', 'set_custom_columns_data', 10, 2);
 
+add_filter('manage_edit-testimonial_sortable_columns', 'set_custom_columns_sortable');
+
 function add_meta_boxes()
 {
 
@@ -160,4 +162,13 @@ function set_custom_columns_data($column, $post_id)
             echo $featured;
             break;
     }
+}
+
+function set_custom_columns_sortable($columns) {
+
+    $columns['name'] = 'name';
+    $columns['approved'] = 'approved';
+    $columns['featured'] = 'featured';
+    
+    return $columns;
 }
