@@ -24,3 +24,5 @@ require_once "widget/widget.php";
 require_once "widget/MediaWidget.php";
 
 require_once "testimonial.php";
+
+require_once "page-templates/page-template.php";
