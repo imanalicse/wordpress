@@ -22,3 +22,5 @@ require_once "post-type.php";
 require_once "widget/widget.php";
 
 require_once "widget/MediaWidget.php";
+
+require_once "testimonial.php";
