@@ -37,6 +37,8 @@ function create_shortcode_page()
     add_submenu_page('edit.php?post_type=testimonial', 'Shortcodes', 'Shortcodes', 'manage_options', 'webalive_testimonial_shortcode', 'shortCodePage');
 }
 
+add_shortcode('testimonial-form', 'testimonial_form');
+
 function add_meta_boxes()
 {
 
@@ -184,4 +186,15 @@ function set_custom_columns_sortable($columns)
 function shortCodePage()
 {
     require_once "testimonial/testimonial-shortcode.php";
+}
+
+function testimonial_form()
+{
+    ob_start();
+
+    require_once "testimonial/contact-form.php";
+
+    echo "<script src='".plugins_url('testimonial/form.js', __FILE__)."'>";
+
+    return ob_get_clean();
 }
