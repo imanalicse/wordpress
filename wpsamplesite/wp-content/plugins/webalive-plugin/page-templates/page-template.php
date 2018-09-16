@@ -25,6 +25,13 @@ function webalive_load_template($template)
         return $template;
     }
 
+    if(is_front_page()) {
+        echo $file = plugin_dir_path(__FILE__)."front-page.php";
+        if (file_exists($file)) {
+            return $file;
+        }
+    }
+
     $template_name = get_post_meta($post->ID, '_wp_page_template', true);
 
     if (!isset($plugin_templates[$template_name])) {
