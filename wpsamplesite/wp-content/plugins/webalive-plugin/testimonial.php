@@ -31,7 +31,7 @@ function add_meta_boxes()
 
     add_meta_box(
         'testimonial_author',
-        'Author',
+        'Testimonial Options',
         'render_author_box',
         'testimonial',
         'side',
@@ -43,25 +43,60 @@ function add_meta_boxes()
 function render_author_box($post)
 {
 
-    wp_nonce_field('webalive_testimonial_author', 'webalive_testimonial_author_nonce');
+    wp_nonce_field('webalive_testimonial', 'webalive_testimonial_nonce');
 
-    $value = get_post_meta($post->ID, '_webalive_testimonial_author_key', true);
-
+    $data = get_post_meta($post->ID, '_webalive_testimonial_key', true);
+    $name = isset($data['name']) ? $data['name'] : '';
+    $email = isset($data['email']) ? $data['email'] : '';
+    $approved = isset($data['approved']) ? $data['approved'] : false;
+    $featured = isset($data['featured']) ? $data['featured'] : false;
     ?>
-    <label for="webalive_testimonial_author">Testimonial author</label>
-    <input type="text" id="webalive_testimonial_author" name="webalive_testimonial_author"
-           value="<?php echo esc_attr($value); ?>">
+    <p>
+        <label class="meta-label" for="webalive_testimonial_author">Author Name</label>
+        <input type="text" id="webalive_testimonial_author" name="webalive_testimonial_author" class="widefat"
+               value="<?php echo esc_attr($name); ?>">
+    </p>
+    <p>
+        <label class="meta-label" for="webalive_testimonial_email">Author Email</label>
+        <input type="email" id="webalive_testimonial_email" name="webalive_testimonial_email" class="widefat"
+               value="<?php echo esc_attr($email); ?>">
+    </p>
+    <div class="meta-container">
+        <label class="meta-label w-50 text-left" for="webalive_testimonial_approved">Approved</label>
+        <div class="text-right w-50 inline">
+            <div class="ui-toggle inline"><input type="checkbox" id="webalive_testimonial_approved"
+                                                 name="webalive_testimonial_approved"
+                                                 value="1" <?php echo $approved ? 'checked' : ''; ?>>
+                <label for="webalive_testimonial_approved">
+                    <div></div>
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="meta-container">
+        <label class="meta-label w-50 text-left" for="webalive_testimonial_featured">Featured</label>
+        <div class="text-right w-50 inline">
+            <div class="ui-toggle inline"><input type="checkbox" id="webalive_testimonial_featured"
+                                                 name="webalive_testimonial_featured"
+                                                 value="1" <?php echo $featured ? 'checked' : ''; ?>>
+                <label for="webalive_testimonial_featured">
+                    <div></div>
+                </label>
+            </div>
+        </div>
+    </div>
     <?php
 }
 
 function save_meta_box($post_id)
 {
-    if (!isset($_POST['webalive_testimonial_author_nonce'])) {
+
+    if (!isset($_POST['webalive_testimonial_nonce'])) {
         return $post_id;
     }
 
-    $nonce = $_POST['webalive_testimonial_author_nonce'];
-    if (!wp_verify_nonce($nonce, 'webalive_testimonial_author')) {
+    $nonce = $_POST['webalive_testimonial_nonce'];
+    if (!wp_verify_nonce($nonce, 'webalive_testimonial')) {
         return $post_id;
     }
 
@@ -73,8 +108,13 @@ function save_meta_box($post_id)
         return $post_id;
     }
 
-    $data = sanitize_text_field($_POST['webalive_testimonial_author']);
+    $data = array(
+        'name' => sanitize_text_field($_POST['webalive_testimonial_author']),
+        'email' => sanitize_text_field($_POST['webalive_testimonial_email']),
+        'approved' => isset($_POST['webalive_testimonial_approved']) ? 1 : 0,
+        'featured' => isset($_POST['webalive_testimonial_featured']) ? 1 : 0,
+    );
 
-    update_post_meta($post_id, '_webalive_testimonial_author_key', $data);
+    update_post_meta($post_id, '_webalive_testimonial_key', $data);
 
 }
