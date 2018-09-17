@@ -25,8 +25,9 @@ function webalive_load_template($template)
         return $template;
     }
 
+    // If is the front page, load a custom template
     if(is_front_page()) {
-        echo $file = plugin_dir_path(__FILE__)."front-page.php";
+        $file = plugin_dir_path(__FILE__)."front-page.php";
         if (file_exists($file)) {
             return $file;
         }
