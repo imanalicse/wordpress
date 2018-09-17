@@ -21,6 +21,34 @@ function testimonial_cpt()
     );
 
     register_post_type('testimonial', $args);
+
+    /*Insert testimonial by programming*/
+
+    /*
+    $name = "Iman";
+    $email = 'imanali.cse@gmail.com';
+    $message = "Testimonial content";
+    $data = array(
+        'name' => $name,
+        'email' => $email,
+        'approved' => 0,
+        'featured' => 0
+    );
+
+    $args = array(
+        'post_title'=>'Testimonial From '. $name,
+        'post_content'=>$message,
+        'post_author'=>1,
+        'post_status'=>'publish',
+        'post_type'=>'testimonial',
+        'meta_input'=> array(
+            '_webalive_testimonial_key'=>$data
+        )
+    );
+
+    $postID = wp_insert_post($args);
+
+    */
 }
 
 add_action('add_meta_boxes', 'add_meta_boxes');
@@ -194,7 +222,7 @@ function testimonial_form()
 
     require_once "testimonial/contact-form.php";
 
-    echo "<script src='".plugins_url('testimonial/form.js', __FILE__)."'>";
+    echo "<script src='" . plugins_url('testimonial/form.js', __FILE__) . "'>";
 
     return ob_get_clean();
 }
