@@ -2,6 +2,14 @@
 
 add_action('init', 'testimonial_cpt');
 
+add_action('admin_enqueue_scripts', 'webalive_testimoinial_scripts');
+
+function webalive_testimoinial_scripts()
+{
+    wp_enqueue_script("testimonial-script", plugins_url('testimonial/testimonial.js', __FILE__));
+    wp_enqueue_style('testimonial', plugins_url('testimonial/testimonial.css', __FILE__));
+}
+
 function testimonial_cpt()
 {
 
@@ -79,6 +87,54 @@ function add_meta_boxes()
         'default'
     );
 
+    add_meta_box(
+        'testimonial_tab',
+        'Testimonial Tabs',
+        'render_tab_box',
+        'testimonial',
+        'normal',
+        'default'
+    );
+
+
+}
+
+function render_tab_box($post)
+{
+    $data = get_post_meta($post->ID, '_webalive_testimonial_tabs', true);
+    $tab1_content1 =
+    $tab1_content1 = isset($data['tab1_content1']) ? $data['tab1_content1'] : '';
+    $tab2_content1 = isset($data['tab2_content1']) ? $data['tab2_content1'] : '';
+//    echo '<pre>';
+//    print_r($data);
+//    echo '</pre>';
+    ?>
+    <div class="tabs">
+        <nav>
+            <a>Tab #1</a>
+            <a>Tab #2</a>
+            <a>Tab #3</a>
+        </nav>
+
+        <div class="content">
+            <p>
+                <label class="meta-label" for="tab1_content1">tab 1 content</label>
+                <input type="text" id="tab1_content1" name="tabs[tab1_content1]" class="widefat" value="<?php echo $tab1_content1; ?>">
+            </p>
+<!--            <input type="button" value="Save" class="ajax_save">-->
+        </div>
+
+        <div class="content">
+            <p>
+                <label class="meta-label" for="tab2_content1">tab 2 content 1</label>
+                <input type="text" id="tab2_content1" name="tabs[tab2_content1]" class="widefat" value="<?php echo $tab2_content1; ?>">
+            </p>
+        </div>
+        <div class="content">
+            <p>Content #3</p>
+        </div>
+    </div>
+    <?php
 }
 
 function render_author_box($post)
@@ -156,6 +212,10 @@ function save_meta_box($post_id)
         'featured' => isset($_POST['webalive_testimonial_featured']) ? 1 : 0,
     );
 
+    if(isset($_POST['tabs'])) {
+        update_post_meta($post_id, '_webalive_testimonial_tabs', $_POST['tabs']);
+    }
+
     update_post_meta($post_id, '_webalive_testimonial_key', $data);
 }
 
@@ -225,4 +285,64 @@ function testimonial_form()
     echo "<script src='" . plugins_url('testimonial/form.js', __FILE__) . "'>";
 
     return ob_get_clean();
+}
+
+
+//add_filter( 'parse_query', 'wpse45436_posts_filter' );
+
+add_action( 'restrict_manage_posts', 'wpse45436_admin_posts_filter_restrict_manage_posts' );
+
+function wpse45436_admin_posts_filter_restrict_manage_posts(){
+
+    $type = 'post';
+    if (isset($_GET['post_type'])) {
+        $type = $_GET['post_type'];
+    }
+
+    //only add filter to post type you want
+    if ('testimonial' == $type){
+        //change this to the list of values you want to show
+        //in 'label' => 'value' format
+        $values = array(
+            'label' => 'value',
+            'Approved' => 1,
+            'Un-Approved' => 0,
+        );
+        ?>
+        <select name="ADMIN_FILTER_APPROVED">
+            <option value=""><?php _e('Filter By ', 'wose45436'); ?></option>
+            <?php
+            $current_v = isset($_GET['ADMIN_FILTER_APPROVED'])? $_GET['ADMIN_FILTER_APPROVED']:'';
+            foreach ($values as $label => $value) {
+                printf
+                (
+                    '<option value="%s"%s>%s</option>',
+                    $value,
+                    $value == $current_v? ' selected="selected"':'',
+                    $label
+                );
+            }
+            ?>
+        </select>
+        <?php
+    }
+}
+
+add_filter( 'parse_query', 'wpse45436_posts_filter' );
+
+function wpse45436_posts_filter( $query ){
+    global $pagenow;
+    $type = 'post';
+    if (isset($_GET['post_type'])) {
+        $type = $_GET['post_type'];
+    }
+    if ( 'testimonial' == $type && is_admin() && $pagenow=='edit.php' && isset($_GET['ADMIN_FILTER_APPROVED']) && $_GET['ADMIN_FILTER_APPROVED'] != '') {
+        $query->query_vars['meta_key'] = '_webalive_testimonial_key';
+        $query->query_vars['meta_value'] = serialize(array( 'approved'=>$_GET['ADMIN_FILTER_APPROVED']));
+        //$query->query_vars['meta_compare'] = '=';
+//        echo '<pre>';
+//        print_r($query);
+//        echo '</pre>';
+//        die();
+    }
 }
