@@ -29,7 +29,7 @@ function webalive_load_template($template)
     if(is_front_page()) {
         $file = plugin_dir_path(__FILE__)."front-page.php";
         if (file_exists($file)) {
-            return $file;
+            //return $file;
         }
     }
 
