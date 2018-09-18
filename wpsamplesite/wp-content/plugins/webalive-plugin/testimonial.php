@@ -2,6 +2,14 @@
 
 add_action('init', 'testimonial_cpt');
 
+add_action('admin_enqueue_scripts', 'webalive_testimoinial_scripts');
+
+function webalive_testimoinial_scripts()
+{
+    wp_enqueue_script("testimonial-script", plugins_url('testimonial/testimonial.js', __FILE__));
+    wp_enqueue_style('testimonial', plugins_url('testimonial/testimonial.css', __FILE__));
+}
+
 function testimonial_cpt()
 {
 
@@ -79,6 +87,54 @@ function add_meta_boxes()
         'default'
     );
 
+    add_meta_box(
+        'testimonial_tab',
+        'Testimonial Tabs',
+        'render_tab_box',
+        'testimonial',
+        'normal',
+        'default'
+    );
+
+
+}
+
+function render_tab_box($post)
+{
+    $data = get_post_meta($post->ID, '_webalive_testimonial_tabs', true);
+    $tab1_content1 =
+    $tab1_content1 = isset($data['tab1_content1']) ? $data['tab1_content1'] : '';
+    $tab2_content1 = isset($data['tab2_content1']) ? $data['tab2_content1'] : '';
+//    echo '<pre>';
+//    print_r($data);
+//    echo '</pre>';
+    ?>
+    <div class="tabs">
+        <nav>
+            <a>Tab #1</a>
+            <a>Tab #2</a>
+            <a>Tab #3</a>
+        </nav>
+
+        <div class="content">
+            <p>
+                <label class="meta-label" for="tab1_content1">tab 1 content</label>
+                <input type="text" id="tab1_content1" name="tabs[tab1_content1]" class="widefat" value="<?php echo $tab1_content1; ?>">
+            </p>
+<!--            <input type="button" value="Save" class="ajax_save">-->
+        </div>
+
+        <div class="content">
+            <p>
+                <label class="meta-label" for="tab2_content1">tab 2 content 1</label>
+                <input type="text" id="tab2_content1" name="tabs[tab2_content1]" class="widefat" value="<?php echo $tab2_content1; ?>">
+            </p>
+        </div>
+        <div class="content">
+            <p>Content #3</p>
+        </div>
+    </div>
+    <?php
 }
 
 function render_author_box($post)
@@ -155,6 +211,10 @@ function save_meta_box($post_id)
         'approved' => isset($_POST['webalive_testimonial_approved']) ? 1 : 0,
         'featured' => isset($_POST['webalive_testimonial_featured']) ? 1 : 0,
     );
+
+    if(isset($_POST['tabs'])) {
+        update_post_meta($post_id, '_webalive_testimonial_tabs', $_POST['tabs']);
+    }
 
     update_post_meta($post_id, '_webalive_testimonial_key', $data);
 }
