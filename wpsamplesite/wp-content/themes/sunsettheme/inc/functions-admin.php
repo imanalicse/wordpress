@@ -26,8 +26,13 @@ add_action('admin_menu', 'sunset_add_admin_page');
 function sunset_custom_settings()
 {
     register_setting("sunset-settings-group", 'first_name');
+    register_setting("sunset-settings-group", 'last_name');
+    register_setting("sunset-settings-group", 'twitter_handler');
+
     add_settings_section('sunset-sidebar-options', 'Sidebar Options', 'sunset_sidebar_options', 'alecaddd_sunset');
-    add_settings_field('sidebar-name', 'First Name', 'sunset_sidebar_name', 'alecaddd_sunset', 'sunset-sidebar-options');
+
+    add_settings_field('sidebar-name', 'Full Name', 'sunset_sidebar_name', 'alecaddd_sunset', 'sunset-sidebar-options');
+    add_settings_field('sidebar-twitter', 'Twitter', 'sunset_sidebar_twitter', 'alecaddd_sunset', 'sunset-sidebar-options');
 }
 
 function sunset_sidebar_options()
@@ -38,8 +43,15 @@ function sunset_sidebar_options()
 function sunset_sidebar_name()
 {
     $firstName = esc_attr(get_option('first_name'));
+    $lastName = esc_attr(get_option('last_name'));
 
     echo '<input type="text" name="first_name" value="' . $firstName . '" placeholder="First Name"/>';
+    echo '<input type="text" name="last_name" value="' . $lastName . '" placeholder="Last Name"/>';
+}
+
+function sunset_sidebar_twitter() {
+    $twitter = esc_attr(get_option('twitter_handler'));
+    echo '<input type="text" name="twitter_handler" value="' . $twitter . '" placeholder="Twitter handler"/><>';
 }
 
 
