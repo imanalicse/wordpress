@@ -33,6 +33,38 @@ function sunset_custom_settings()
 
     add_settings_field('sidebar-name', 'Full Name', 'sunset_sidebar_name', 'alecaddd_sunset', 'sunset-sidebar-options');
     add_settings_field('sidebar-twitter', 'Twitter', 'sunset_sidebar_twitter', 'alecaddd_sunset', 'sunset-sidebar-options');
+
+    //
+    $option_name = 'social_options';
+    register_setting("sunset-settings-social-group", $option_name);
+    add_settings_section('sunset-social-options', 'Social Options', 'sunset_social_options', 'alecaddd_sunset_social');
+
+    add_settings_field('social-facebook', 'Facebook', 'text_field_callback', 'alecaddd_sunset_social', 'sunset-social-options', array(
+        'field' => 'facebook',
+        'type' => 'text',
+        'label'=>'Facebook',
+        'option_name'=> $option_name
+    ));
+    add_settings_field('social-twitter', 'Twitter', 'text_field_callback', 'alecaddd_sunset_social', 'sunset-social-options', array(
+        'field' => 'twitter',
+        'type' => 'text',
+        'label'=>'Twitter',
+        'option_name'=> $option_name
+    ));
+
+}
+
+function text_field_callback($args)
+{
+    $data = get_option($args['option_name']);
+    $value = isset($data[$args['field']]) ? $data[$args['field']] : '';
+    echo '<input type="text" name="'.$args['option_name'].'['.$args['field'].']'.'social_options[facebook]" value="' . $value . '" placeholder="'.$args['label'].'" style="width:300px"/>';
+
+}
+
+function sunset_social_options()
+{
+    echo "Social Options";
 }
 
 function sunset_sidebar_options()
@@ -49,9 +81,10 @@ function sunset_sidebar_name()
     echo '<input type="text" name="last_name" value="' . $lastName . '" placeholder="Last Name"/>';
 }
 
-function sunset_sidebar_twitter() {
+function sunset_sidebar_twitter()
+{
     $twitter = esc_attr(get_option('twitter_handler'));
-    echo '<input type="text" name="twitter_handler" value="' . $twitter . '" placeholder="Twitter handler"/><>';
+    echo '<input type="text" name="twitter_handler" value="' . $twitter . '" placeholder="Twitter handler"/><p>@remove</p>';
 }
 
 
