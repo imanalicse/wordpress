@@ -1,6 +1,6 @@
-<h1>Sunset Theme Options</h1>
+<h1>Sunset Sidebar Options</h1>
 
-<?php settings_errors("sunset-sidebar-options"); ?>
+<?php settings_errors(); ?>
 
 <form method="post" action="options.php">
     <?php settings_fields('sunset-settings-group'); ?>
