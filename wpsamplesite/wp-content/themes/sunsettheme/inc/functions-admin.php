@@ -36,16 +36,19 @@ function sunset_custom_settings()
 
     //
     $option_name = 'social_options';
-    register_setting("sunset-settings-social-group", $option_name);
-    add_settings_section('sunset-social-options', 'Social Options', 'sunset_social_options', 'alecaddd_sunset_social');
+    $section_id = 'sunset-social-options';
+    $page = 'alecaddd_sunset_social';
 
-    add_settings_field('social-facebook', 'Facebook', 'text_field_callback', 'alecaddd_sunset_social', 'sunset-social-options', array(
+    register_setting("sunset-settings-social-group", $option_name);
+    add_settings_section($section_id, 'Social Options', 'sunset_social_options', $page);
+
+    add_settings_field('social-facebook', 'Facebook', 'text_field_callback', $page, $section_id, array(
         'field' => 'facebook',
         'type' => 'text',
         'label'=>'Facebook',
         'option_name'=> $option_name
     ));
-    add_settings_field('social-twitter', 'Twitter', 'text_field_callback', 'alecaddd_sunset_social', 'sunset-social-options', array(
+    add_settings_field('social-twitter', 'Twitter', 'text_field_callback', $page, $section_id, array(
         'field' => 'twitter',
         'type' => 'text',
         'label'=>'Twitter',
