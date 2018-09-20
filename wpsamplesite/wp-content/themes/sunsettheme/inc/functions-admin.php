@@ -115,8 +115,11 @@ function sunset_sidebar_options()
 function sunset_sidebar_profile()
 {
     $picture = get_option('profile_picture');
-
-    echo '<input type="button" value="Upload Profile Picture" class="button button-secondary" id="upload-button"/>';
+    if(empty($picture)) {
+        echo '<input type="button" value="Upload Profile Picture" class="button button-secondary" id="upload-button"/>';
+    }else{
+        echo '<input type="button" value="Change Profile Picture" class="button button-secondary" id="upload-button"/><input type="button" value="x" class="button button-secondary" id="remove-picture"/>';
+    }
     echo '<input type="hidden" name="profile_picture" value="' . $picture . '" id="profile-picture"/>';
     echo '<img src="' . $picture . '" class="profile-picture-preview" style="display:block; padding-top:10px; width: 150px;border-radius: 50%;"/>';
 }

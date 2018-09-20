@@ -27,4 +27,20 @@ jQuery(document).ready(function ($) {
 
     });
 
+    $('#remove-picture').on('click', function (e) {
+        e.preventDefault();
+
+        var answer = confirm("Are you sure you want to delete your Profile Picture?");
+
+        if(answer ==1) {
+            console.log("Yes, please");
+            $('#profile-picture').val('');
+            $(".profile-picture-preview").attr('src', '');
+            $('.sunset-general-form').submit();
+        }
+
+        return;
+
+    });
+
 });
