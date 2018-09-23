@@ -35,9 +35,12 @@ get_header(); ?>
                 <?php
                 $args = array(
                     'post_type' > 'post',
-                    'posts_per_page' => 5,
-                    'orderby' => 'rand',
-                    'order' => 'DESC'
+                    'posts_per_page' => 10,
+                    'meta_key'=>'order',
+                    //'meta_compare'=> '=',
+                    //'meta_value'=> 10,
+                    'orderby' => 'meta_value',
+                    'order' => 'asc'
                 );
 
                 $qeury = new WP_Query($args);
