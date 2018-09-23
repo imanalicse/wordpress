@@ -619,8 +619,11 @@ require get_parent_theme_file_path('/inc/icon-functions.php');
 
 function post_title_modify($title, $post_id)
 {
-    $order_number = get_post_meta($post_id,  'order', true);
-    return $title.' - ('. $order_number .')';
+    if ('post' == get_post_type($post_id)) {
+        $order_number = get_post_meta($post_id, 'order', true);
+        $title = $title . ' - (' . $order_number . ')';
+    }
+    return $title;
 }
 
 add_filter('the_title', 'post_title_modify', 10, 2);
