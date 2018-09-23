@@ -31,31 +31,13 @@ get_header(); ?>
         <div id="primary" class="content-area">
             <main id="main" class="site-main" role="main">
 
-                <?php
-                $featured_post_id = '';
-                $args = array(
-                    'post_type' > 'post',
-                    'posts_per_page' => 1,
-                );
-
-                $qeury = new WP_Query($args);
-
-                while ($qeury->have_posts()): $qeury->the_post();
-                    $featured_post_id = $post->ID;
-                    ?>
-                    <div class="featured" style="background: #ccc;padding: 20px">
-                        <h3><?php the_title(); ?></h3>
-                    </div>
-                    <?php
-                endwhile;
-                wp_reset_query();
-                ?>
 
                 <?php
                 $args = array(
                     'post_type' > 'post',
                     'posts_per_page' => 5,
-                    'post__not_in' => array($featured_post_id)
+                    'orderby' => 'rand',
+                    'order' => 'DESC'
                 );
 
                 $qeury = new WP_Query($args);
