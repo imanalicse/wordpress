@@ -17,51 +17,63 @@
 
 get_header(); ?>
 
-<div class="wrap">
-	<?php if ( is_home() && ! is_front_page() ) : ?>
-		<header class="page-header">
-			<h1 class="page-title"><?php single_post_title(); ?></h1>
-		</header>
-	<?php else : ?>
-	<header class="page-header">
-		<h2 class="page-title"><?php _e( 'Posts', 'twentyseventeen' ); ?></h2>
-	</header>
-	<?php endif; ?>
+    <div class="wrap">
+        <?php if (is_home() && !is_front_page()) : ?>
+            <header class="page-header">
+                <h1 class="page-title"><?php single_post_title(); ?></h1>
+            </header>
+        <?php else : ?>
+            <header class="page-header">
+                <h2 class="page-title"><?php _e('Posts', 'twentyseventeen'); ?></h2>
+            </header>
+        <?php endif; ?>
 
-	<div id="primary" class="content-area">
-		<main id="main" class="site-main" role="main">
+        <div id="primary" class="content-area">
+            <main id="main" class="site-main" role="main">
 
-			<?php
-			if ( have_posts() ) :
+                <?php
+                $featured_post_id = '';
+                $args = array(
+                    'post_type' > 'post',
+                    'posts_per_page' => 1,
+                );
 
-				/* Start the Loop */
-				while ( have_posts() ) : the_post();
+                $qeury = new WP_Query($args);
 
-					/*
-					 * Include the Post-Format-specific template for the content.
-					 * If you want to override this in a child theme, then include a file
-					 * called content-___.php (where ___ is the Post Format name) and that will be used instead.
-					 */
-					get_template_part( 'template-parts/post/content', get_post_format() );
+                while ($qeury->have_posts()): $qeury->the_post();
+                    $featured_post_id = $post->ID;
+                    ?>
+                    <div class="featured" style="background: #ccc;padding: 20px">
+                        <h3><?php the_title(); ?></h3>
+                    </div>
+                    <?php
+                endwhile;
+                wp_reset_query();
+                ?>
 
-				endwhile;
+                <?php
+                $args = array(
+                    'post_type' > 'post',
+                    'posts_per_page' => 5,
+                    'post__not_in' => array($featured_post_id)
+                );
 
-				the_posts_pagination( array(
-					'prev_text' => twentyseventeen_get_svg( array( 'icon' => 'arrow-left' ) ) . '<span class="screen-reader-text">' . __( 'Previous page', 'twentyseventeen' ) . '</span>',
-					'next_text' => '<span class="screen-reader-text">' . __( 'Next page', 'twentyseventeen' ) . '</span>' . twentyseventeen_get_svg( array( 'icon' => 'arrow-right' ) ),
-					'before_page_number' => '<span class="meta-nav screen-reader-text">' . __( 'Page', 'twentyseventeen' ) . ' </span>',
-				) );
+                $qeury = new WP_Query($args);
 
-			else :
+                while ($qeury->have_posts()): $qeury->the_post();
+                    ?>
 
-				get_template_part( 'template-parts/post/content', 'none' );
+                    <p><?php the_title(); ?></p>
 
-			endif;
-			?>
+                    <?php
+                endwhile;
+                wp_reset_query();
+                ?>
 
-		</main><!-- #main -->
-	</div><!-- #primary -->
-	<?php get_sidebar(); ?>
-</div><!-- .wrap -->
+
+            </main><!-- #main -->
+        </div><!-- #primary -->
+        <?php //get_sidebar(); ?>
+    </div><!-- .wrap -->
 
 <?php get_footer();
