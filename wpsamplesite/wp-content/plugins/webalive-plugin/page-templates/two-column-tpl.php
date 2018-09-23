@@ -6,6 +6,8 @@
 
 get_header();
 
+do_action('webalive_after_header');
+
 ?>
 
     <h1>Custom 2 Columns Template</h1>

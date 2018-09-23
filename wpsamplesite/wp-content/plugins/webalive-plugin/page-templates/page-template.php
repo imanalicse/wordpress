@@ -47,3 +47,20 @@ function webalive_load_template($template)
 
     return $template;
 }
+
+add_action("webalive_after_header", 'webalive_after_header_callback');
+
+function webalive_after_header_callback() {
+    echo '<h2>'.apply_filters('webalive_page_title', 'Two Column page').'</h2>';
+}
+
+add_action("webalive_after_header", 'webalive_after_header_callback2', 10);
+
+function webalive_after_header_callback2() {
+    echo "<p>Text content 2</p>";
+}
+
+add_filter('webalive_page_title', 'webalive_page_title_modify');
+function webalive_page_title_modify() {
+    return 'Modified Two column page title using filter';
+}
