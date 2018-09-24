@@ -143,9 +143,9 @@ function render_author_box($post)
     wp_nonce_field('webalive_testimonial', 'webalive_testimonial_nonce');
 
     $data = get_post_meta($post->ID, '_webalive_testimonial_key', true);
+    $approved = get_post_meta($post->ID, '_webalive_testimonial_approved', true);
     $name = isset($data['name']) ? $data['name'] : '';
     $email = isset($data['email']) ? $data['email'] : '';
-    $approved = isset($data['approved']) ? $data['approved'] : false;
     $featured = isset($data['featured']) ? $data['featured'] : false;
     ?>
     <p>
@@ -205,10 +205,11 @@ function save_meta_box($post_id)
         return $post_id;
     }
 
+    $approved = isset($_POST['webalive_testimonial_approved']) ? 1 : 0;
+
     $data = array(
         'name' => sanitize_text_field($_POST['webalive_testimonial_author']),
         'email' => sanitize_text_field($_POST['webalive_testimonial_email']),
-        'approved' => isset($_POST['webalive_testimonial_approved']) ? 1 : 0,
         'featured' => isset($_POST['webalive_testimonial_featured']) ? 1 : 0,
     );
 
@@ -217,6 +218,7 @@ function save_meta_box($post_id)
     }
 
     update_post_meta($post_id, '_webalive_testimonial_key', $data);
+    update_post_meta($post_id, '_webalive_testimonial_approved', $approved);
 }
 
 function set_custom_columns($columns)
@@ -241,9 +243,12 @@ function set_custom_columns_data($column, $post_id)
 {
 
     $data = get_post_meta($post_id, '_webalive_testimonial_key', true);
+
+    $approved = get_post_meta($post_id, '_webalive_testimonial_approved', true);
+
     $name = isset($data['name']) ? $data['name'] : '';
     $email = isset($data['email']) ? $data['email'] : '';
-    $approved = isset($data['approved']) && $data['approved'] === 1 ? '<strong>YES</strong>' : 'NO';
+    $approved = ($approved == 1) ? '<strong>YES</strong>' : 'NO';
     $featured = isset($data['featured']) && $data['featured'] === 1 ? '<strong>YES</strong>' : 'NO';
 
     switch ($column) {
@@ -337,8 +342,8 @@ function wpse45436_posts_filter( $query ){
         $type = $_GET['post_type'];
     }
     if ( 'testimonial' == $type && is_admin() && $pagenow=='edit.php' && isset($_GET['ADMIN_FILTER_APPROVED']) && $_GET['ADMIN_FILTER_APPROVED'] != '') {
-        $query->query_vars['meta_key'] = '_webalive_testimonial_key';
-        $query->query_vars['meta_value'] = serialize(array( 'approved'=>$_GET['ADMIN_FILTER_APPROVED']));
+        $query->query_vars['meta_key'] = '_webalive_testimonial_approved';
+        $query->query_vars['meta_value'] = $_GET['ADMIN_FILTER_APPROVED'];
         //$query->query_vars['meta_compare'] = '=';
 //        echo '<pre>';
 //        print_r($query);
