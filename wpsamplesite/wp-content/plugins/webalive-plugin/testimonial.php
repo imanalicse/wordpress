@@ -293,11 +293,9 @@ function testimonial_form()
 }
 
 
-//add_filter( 'parse_query', 'wpse45436_posts_filter' );
+add_action( 'restrict_manage_posts', 'webalive_admin_posts_filter_restrict_manage_posts' );
 
-add_action( 'restrict_manage_posts', 'wpse45436_admin_posts_filter_restrict_manage_posts' );
-
-function wpse45436_admin_posts_filter_restrict_manage_posts(){
+function webalive_admin_posts_filter_restrict_manage_posts(){
 
     $type = 'post';
     if (isset($_GET['post_type'])) {
@@ -309,13 +307,12 @@ function wpse45436_admin_posts_filter_restrict_manage_posts(){
         //change this to the list of values you want to show
         //in 'label' => 'value' format
         $values = array(
-            'label' => 'value',
             'Approved' => 1,
             'Un-Approved' => 0,
         );
         ?>
         <select name="ADMIN_FILTER_APPROVED">
-            <option value=""><?php _e('Filter By ', 'wose45436'); ?></option>
+            <option value=""><?php _e('Filter By ', 'webalive'); ?></option>
             <?php
             $current_v = isset($_GET['ADMIN_FILTER_APPROVED'])? $_GET['ADMIN_FILTER_APPROVED']:'';
             foreach ($values as $label => $value) {
@@ -333,9 +330,9 @@ function wpse45436_admin_posts_filter_restrict_manage_posts(){
     }
 }
 
-add_filter( 'parse_query', 'wpse45436_posts_filter' );
+add_filter( 'parse_query', 'webalive_posts_filter' );
 
-function wpse45436_posts_filter( $query ){
+function webalive_posts_filter( $query ){
     global $pagenow;
     $type = 'post';
     if (isset($_GET['post_type'])) {
@@ -344,10 +341,5 @@ function wpse45436_posts_filter( $query ){
     if ( 'testimonial' == $type && is_admin() && $pagenow=='edit.php' && isset($_GET['ADMIN_FILTER_APPROVED']) && $_GET['ADMIN_FILTER_APPROVED'] != '') {
         $query->query_vars['meta_key'] = '_webalive_testimonial_approved';
         $query->query_vars['meta_value'] = $_GET['ADMIN_FILTER_APPROVED'];
-        //$query->query_vars['meta_compare'] = '=';
-//        echo '<pre>';
-//        print_r($query);
-//        echo '</pre>';
-//        die();
     }
 }
