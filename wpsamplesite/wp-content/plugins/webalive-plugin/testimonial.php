@@ -96,7 +96,30 @@ function add_meta_boxes()
         'default'
     );
 
+    add_meta_box(
+        'testimonial_biography',
+        'Biography',
+        'render_biography_box',
+        'testimonial',
+        'normal',
+        'default'
+    );
 
+
+}
+
+
+function render_biography_box($post) {
+
+    $meta_biography = get_post_meta( $post->ID, 'meta_biography', true );
+
+    wp_editor( $meta_biography, 'biography', array(
+        'wpautop'       => true,
+        'media_buttons' => true,
+        'textarea_name' => 'meta_biography',
+        'textarea_rows' => 10,
+        'teeny'         => true
+    ) );
 }
 
 function render_tab_box($post)
@@ -216,6 +239,11 @@ function save_meta_box($post_id)
     if(isset($_POST['tabs'])) {
         update_post_meta($post_id, '_webalive_testimonial_tabs', $_POST['tabs']);
     }
+
+    if(isset($_POST['meta_biography'])) {
+        update_post_meta($post_id, 'meta_biography', $_POST['meta_biography']);
+    }
+
 
     update_post_meta($post_id, '_webalive_testimonial_key', $data);
     update_post_meta($post_id, '_webalive_testimonial_approved', $approved);
