@@ -36,7 +36,7 @@ function save_meta_box_repeater($post_id)
     echo '<pre>';
     print_r($_POST['contributors']);
     echo '</pre>';
-    //die();
+    
     if(isset($_POST['contributors'])){
         update_post_meta($post_id, 'contributors', $_POST['contributors']);
     }
