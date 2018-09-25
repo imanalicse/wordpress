@@ -59,6 +59,8 @@ function testimonial_cpt()
     */
 }
 
+require_once 'testimonial/repeater-meta.php';
+
 add_action('add_meta_boxes', 'add_meta_boxes');
 add_action('save_post', 'save_meta_box');
 add_action('manage_testimonial_posts_columns', 'set_custom_columns');

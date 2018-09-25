@@ -22,4 +22,18 @@ $(function() {
     // $(".ajax_save").on('click', function () {
     //
     // });
+    var container = $(".field-container");
+    var i = 1;
+    $(".add-more").on('click', function (e) {
+        e.preventDefault();
+        i++;
+        container.append('<p class="row-'+i+'"><input type="text" name="contributors[]" value="" placeholder="Name"><span class="remove" rel="'+i+'">X</span></p>');
+    });
+
+    $(document).on("click", '.remove', function (e) {
+        e.preventDefault();
+        var index = $(this).attr('rel');
+        container.find('.row-'+index).remove();
+    })
+
 });
