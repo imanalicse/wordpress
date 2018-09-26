@@ -34,6 +34,37 @@ $(function() {
         e.preventDefault();
         var index = $(this).attr('rel');
         container.find('.row-'+index).remove();
-    })
+    });
+
+    $(".custom-meta-data-save").on('click', function (e) {
+        e.preventDefault();
+        var form = $(this).parents("form");
+        var formData = $(".contributor-container input").serializeArray();
+        var data = {
+            action: 'save_metabox',
+            data: formData
+        }
+        
+        $.ajax({
+            type:"POST",
+            url: localize.ajax_url,
+            data: data,
+            success: function (resp) {
+                console.log(resp);
+            }
+        });
+    });
+
+    console.log(localize);
 
 });
+
+
+$.fn.serializeFormObject = function () {
+    var formData = $(this).serializeArray();
+    var result = {};
+    $.each(formData, function (index, value) {
+        result[value.name] = value.value;
+    });
+    return result;
+};

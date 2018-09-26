@@ -19,7 +19,7 @@ function render_contributors_box($post)
     $contributors = get_post_meta($post->ID, 'contributors', true);
     ?>
     <div class="contributor-container">
-    
+
         <label class="meta-label" for="webalive_testimonial_author">Contributor Name</label>
         <div class="field-container">
             <?php
@@ -31,7 +31,7 @@ function render_contributors_box($post)
                     if ($count == 1) {
                         $field = '<p class="row-1"><input type="text" name="contributors[]"  value="' . $contributor . '" placeholder="Name"><button class="button button-primary add-more">Add More</button> </p>';
                     } else {
-                        $field .='<p class="row-' . $count . '"><input type="text" name="contributors[]"  value="' . $contributor . '" placeholder="Name"><span class="remove" rel="' . $count . '">X</span></p>';
+                        $field .= '<p class="row-' . $count . '"><input type="text" name="contributors[]"  value="' . $contributor . '" placeholder="Name"><span class="remove" rel="' . $count . '">X</span></p>';
                     }
                     $count++;
                 }
@@ -39,6 +39,8 @@ function render_contributors_box($post)
             echo $field;
             ?>
         </div>
+        <button class="button button-primary custom-meta-data-save" type="button">Save</button>
+
     </div>
     <?php
 }
@@ -49,3 +51,13 @@ function save_meta_box_repeater($post_id)
         update_post_meta($post_id, 'contributors', $_POST['contributors']);
     }
 }
+
+add_action('wp_ajax_save_metabox', "save_metabox");
+add_action('wp_ajax_nopriv_save_metabox', 'save_metabox');
+
+function save_metabox(){
+    echo '<pre>';
+    print_r($_POST);
+    echo '</pre>';
+    die();
+};

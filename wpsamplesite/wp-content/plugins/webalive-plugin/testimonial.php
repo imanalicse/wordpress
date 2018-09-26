@@ -8,6 +8,10 @@ function webalive_testimoinial_scripts()
 {
     wp_enqueue_script("testimonial-script", plugins_url('testimonial/testimonial.js', __FILE__));
     wp_enqueue_style('testimonial', plugins_url('testimonial/testimonial.css', __FILE__));
+    $localize_data = array(
+      'ajax_url' => admin_url( 'admin-ajax.php')
+    );
+    wp_localize_script('testimonial-script', 'localize', $localize_data);
 }
 
 function testimonial_cpt()
