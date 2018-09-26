@@ -17,15 +17,27 @@ function add_meta_boxes_repeater()
 function render_contributors_box($post)
 {
     $contributors = get_post_meta($post->ID, 'contributors', true);
-    echo '<pre>';
-    print_r($contributors);
-    echo '</pre>';
     ?>
     <div class="contributor-container">
-
+    
         <label class="meta-label" for="webalive_testimonial_author">Contributor Name</label>
         <div class="field-container">
-            <p class="row-1"><input type="text" name="contributors[]"  value="" placeholder="Name"><button class="button button-primary add-more">Add More</button> </p>
+            <?php
+            $field = '<p class="row-1"><input type="text" name="contributors[]"  value="" placeholder="Name"><button class="button button-primary add-more">Add More</button> </p>';
+            if (!empty($contributors)) {
+
+                $count = 1;
+                foreach ($contributors as $contributor) {
+                    if ($count == 1) {
+                        $field = '<p class="row-1"><input type="text" name="contributors[]"  value="' . $contributor . '" placeholder="Name"><button class="button button-primary add-more">Add More</button> </p>';
+                    } else {
+                        $field .='<p class="row-' . $count . '"><input type="text" name="contributors[]"  value="' . $contributor . '" placeholder="Name"><span class="remove" rel="' . $count . '">X</span></p>';
+                    }
+                    $count++;
+                }
+            }
+            echo $field;
+            ?>
         </div>
     </div>
     <?php
@@ -33,11 +45,7 @@ function render_contributors_box($post)
 
 function save_meta_box_repeater($post_id)
 {
-    echo '<pre>';
-    print_r($_POST['contributors']);
-    echo '</pre>';
-    
-    if(isset($_POST['contributors'])){
+    if (isset($_POST['contributors'])) {
         update_post_meta($post_id, 'contributors', $_POST['contributors']);
     }
 }
