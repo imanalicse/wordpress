@@ -1,5 +1,12 @@
 <?php
 
+add_action('admin_enqueue_scripts', 'webalive_setting_scripts');
+
+function webalive_setting_scripts()
+{
+    wp_enqueue_style('wp-color-picker');
+    wp_enqueue_script("setting-script", plugins_url('../setting-api/setting.js', __FILE__), array('wp-color-picker'), false, true);
+}
 
 function register_my_custom_menu_page()
 {
@@ -45,8 +52,9 @@ function webalive_custom_settings()
 
     add_settings_section('webalive-sidebar-options', 'Sidebar Options', 'webalive_sidebar_options', 'webalive_setting');
 
-    add_settings_field('sidebar-name', 'Full Name', 'webalive_sidebar_name', 'webalive_setting', 'webalive-sidebar-options');
+    add_settings_field('sidebar-name', 'Full Name 3', 'webalive_sidebar_name', 'webalive_setting', 'webalive-sidebar-options');
     add_settings_field('sidebar-twitter', 'Twitter handler', 'webalive_sidebar_twitter', 'webalive_setting', 'webalive-sidebar-options');
+    add_settings_field('sidebar-color', 'Choose color', 'webalive_sidebar_color', 'webalive_setting', 'webalive-sidebar-options');
 
     // Under setting
     register_setting("webalive-setting-area", "public_key");
@@ -75,6 +83,14 @@ function webalive_sidebar_twitter()
     $options = get_option('webalive_plugin_setting');
     $twitter = esc_attr($options['twitter_handler']);
     echo '<input type="text" name="webalive_plugin_setting[twitter_handler]" value="' . $twitter . '" placeholder="Twitter Handler"><p class="description">Input your twitter username without the @ character</p>';
+}
+
+function webalive_sidebar_color()
+{
+    $options = get_option('webalive_plugin_setting');
+    $color = $options['wa_color'];
+    echo '<input type="text" name="webalive_plugin_setting[wa_color]" value="' . $color . '" class="my-color-field" />';
+
 }
 
 function webalive_sanitize_twitter_handler($input)
