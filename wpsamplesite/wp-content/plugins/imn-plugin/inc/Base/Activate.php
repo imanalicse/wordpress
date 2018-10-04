@@ -1,4 +1,8 @@
 <?php
+/**
+ * @package  ImnPlugin
+ */
+
 namespace Inc\Base;
 
 class Activate

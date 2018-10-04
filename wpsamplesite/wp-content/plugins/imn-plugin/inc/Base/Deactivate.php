@@ -1,4 +1,7 @@
 <?php
+/**
+ * @package  ImnPlugin
+ */
 
 namespace Inc\Base;
 
