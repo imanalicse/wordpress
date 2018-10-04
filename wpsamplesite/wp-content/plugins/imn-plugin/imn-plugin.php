@@ -18,6 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 define("IMN_PLUGIN_PATH", plugin_dir_path(__FILE__));
+define("IMN_PLUGIN_URI", plugin_dir_url(__FILE__));
 
 if(file_exists(IMN_PLUGIN_PATH . './vendor/autoload.php')) {
     require_once IMN_PLUGIN_PATH . './vendor/autoload.php';
