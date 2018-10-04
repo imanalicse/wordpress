@@ -19,22 +19,17 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 define("IMN_PLUGIN_PATH", plugin_dir_path(__FILE__));
 define("IMN_PLUGIN_URL", plugin_dir_url(__FILE__));
+define("IMN_PLUGIN_NAME", plugin_basename(__FILE__));
 
 if(file_exists(IMN_PLUGIN_PATH . './vendor/autoload.php')) {
     require_once IMN_PLUGIN_PATH . './vendor/autoload.php';
 }
 
-use Imn_Inc\Admin\Pages;
-Pages::register();
-
-$engque = new Imn_Inc\Base\Enqueue();
-$engque->register();
-
 /**
  * The code that runs during plugin activation
  */
 function activate_imn_plugin() {
-    Imn_Inc\Base\Activate::activate();
+    \Imn_Inc\Base\Activate::activate();
 }
 register_activation_hook( __FILE__, 'activate_imn_plugin' );
 
@@ -42,6 +37,14 @@ register_activation_hook( __FILE__, 'activate_imn_plugin' );
  * The code that runs during plugin deactivation
  */
 function deactivate_imn_plugin() {
-    Imn_Inc\Base\Deactivate::deactivate();
+    \Imn_Inc\Base\Deactivate::deactivate();
 }
 register_deactivation_hook( __FILE__, 'deactivate_imn_plugin' );
+
+
+/**
+ * Initialize all the core classes of the plugin
+ */
+if ( class_exists( 'Imn_Inc\\Init' ) ) {
+    Imn_Inc\Init::register_services();
+}
