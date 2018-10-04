@@ -1,5 +1,5 @@
 <?php
-namespace Inc\Admin;
+namespace Imn_Inc\Admin;
 
 class Pages {
     

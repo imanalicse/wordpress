@@ -24,19 +24,17 @@ if(file_exists(IMN_PLUGIN_PATH . './vendor/autoload.php')) {
     require_once IMN_PLUGIN_PATH . './vendor/autoload.php';
 }
 
-use Inc\Admin\Pages;
+use Imn_Inc\Admin\Pages;
 Pages::register();
 
-$engque = new Inc\Base\Enqueue();
-
+$engque = new Imn_Inc\Base\Enqueue();
 $engque->register();
-//die();
 
 /**
  * The code that runs during plugin activation
  */
 function activate_imn_plugin() {
-    Inc\Base\Activate::activate();
+    Imn_Inc\Base\Activate::activate();
 }
 register_activation_hook( __FILE__, 'activate_imn_plugin' );
 
@@ -44,6 +42,6 @@ register_activation_hook( __FILE__, 'activate_imn_plugin' );
  * The code that runs during plugin deactivation
  */
 function deactivate_imn_plugin() {
-    Inc\Base\Deactivate::deactivate();
+    Imn_Inc\Base\Deactivate::deactivate();
 }
 register_deactivation_hook( __FILE__, 'deactivate_imn_plugin' );

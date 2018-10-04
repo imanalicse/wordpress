@@ -2,7 +2,7 @@
 /**
  * @package  ImnPlugin
  */
-namespace Inc\Base;
+namespace Imn_Inc\Base;
 
 class Enqueue
 {
