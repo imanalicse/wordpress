@@ -1,0 +1,19 @@
+{
+    "name": "imn/imn-plugin",
+    "description": "This is a standard plugin for reuse",
+    "type": "WpPlugin",
+    "license": "GPL3\u001b[D-3.0",
+    "authors": [
+        {
+            "name": "iman",
+            "email": "iman@bitmascot.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Inc": "./inc"
+        }
+    }
+}
