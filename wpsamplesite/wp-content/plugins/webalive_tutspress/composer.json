@@ -1,0 +1,11 @@
+{
+    "name": "rabiul/webalive_tutspress",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Module\\": "modules/",
+            "Admin\\": "admin/",
+            "Front\\": "public/"
+        }
+    }
+}
