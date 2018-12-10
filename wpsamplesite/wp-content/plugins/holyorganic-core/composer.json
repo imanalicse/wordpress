@@ -1,0 +1,16 @@
+{
+    "name": "iman/holyorganic-core",
+    "authors": [
+        {
+            "name": "iman",
+            "email": "iman@bitmascot.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Holyorganic\\Module\\": "modules/",
+            "Holyorganic\\Frontend\\": "public/"
+        }
+    }
+}
